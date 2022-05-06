@@ -1,2 +1,0 @@
-# fetalbiometry
-Automatic Fetal Biometry 
