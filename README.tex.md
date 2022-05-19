@@ -3,10 +3,15 @@ Automatic Fetal Biometry
 
 # Dynamic Oritentation Determination
 
-Landmark class reassignment (1) determines the specific class of horizontal (left-right) measurement landmark pairs within network training. This mechanism has been shown to improve biometry measurement using landmark regression network (1), as it preserves landmark class consistency after all augmentations. 
+As fetal structure may appear in any orientation, any solution should handle the orientation variability. A common way to handle such variability is augmentation. However, rotation augmentation may cause landmark class labeling (e.g left/right landmarks) to be inconsistent with image coordinates, i.e. the left and right points may be switched, which will hamper the network training.
+![DOD Motivation and example](DODMotivation.jpg) DOD Motivation and example. (a) roriginal standard plane (SP) image of fetal trans-vetricular plane with bi-parietal diameter (BPD) biometry ground-truth up (red) and down (green) landmarks; (b) image after rotation with inconsistent landmark labeling (up/down switched); (c) reassignment of labels classes using dynamic orientation determination (DOD).
+
+This inconsistency can be corrected by performing landmark class reassignment (LCR) \cite{avisdris2021fmlnet}, which preserves horizontal (left/right) landmark class consistency after all augmentations and has been shown to improve biometry estimation accuracy.
+% Landmark class reassignment~\cite{avisdris2021fmlnet} determines the specific class of horizontal (left-right) measurement landmark pairs within network training. This mechanism has been shown to improve biometry measurement using landmark regression network~\cite{avisdris2021fmlnet}, as it preserves landmark class consistency after all augmentations. 
 %
 However, different biometric measurements may have different spatial orientation, for example, OFD is mostly vertical and BPD is mostly horizontal. 
 To overcome this issue, we introduce the DOD mechanism, which determines measurement-wise orientation and then applies class reassignment, instead of only computing the horizontal measurement landmark pairs as in (1). 
+![DOD algorithm](DOD_Fig_v5.png) 
 The proposed DOD is composed of two stages (Fig. XXX). 
 %
 In the \textit{initial setup} stage, the database-wise orientation is determined by fitting a Gaussian Mixture Model of 2 Gaussians with Expectation-Maximization algorithm\cite{dempster1977EM} onto the ground-truth landmarks of training dataset of each biometry. This is followed by computing the directional vector between two centroids of the Gaussians: $\overrightarrow{d} = \overrightarrow{C_1C_2}$. 
