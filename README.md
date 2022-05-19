@@ -14,9 +14,9 @@ To overcome this issue, we introduce the DOD mechanism, which determines measure
 ![DOD algorithm](DOD_Fig_v5.png) 
 The proposed DOD is composed of two stages (Fig. XXX). 
 %
-In the \textit{initial setup} stage, the database-wise orientation is determined by fitting a Gaussian Mixture Model of 2 Gaussians with Expectation-Maximization algorithm\cite{dempster1977EM} onto the ground-truth landmarks of training dataset of each biometry. This is followed by computing the directional vector between two centroids of the Gaussians: $\overrightarrow{d} = \overrightarrow{C_1C_2}$. 
+In the \textit{initial setup} stage, the database-wise orientation is determined by fitting a Gaussian Mixture Model of 2 Gaussians with Expectation-Maximization algorithm\cite{dempster1977EM} onto the ground-truth landmarks of training dataset of each biometry. This is followed by computing the directional vector between two centroids of the Gaussians: <img src="https://render.githubusercontent.com/render/math?math=$\overrightarrow{d} = \overrightarrow{C_1C_2}$">. 
 %
-In the network \textit{training} stage, each biometry landmark pair ($P = p_1, p_2$), after all augmentations, are projected on the directional vector $r_i = (p_i \cdot \overrightarrow{d})/{|\overrightarrow{d}|}$ and then sorted by their projection $sort(|r_i|)$ to obtain their reassigned class. 
+In the network \textit{training} stage, each biometry landmark pair (<img src="https://render.githubusercontent.com/render/math?math=$P = p_1, p_2$">), after all augmentations, are projected on the directional vector <img src="https://render.githubusercontent.com/render/math?math=$r_i = (p_i \cdot \overrightarrow{d})/{|\overrightarrow{d}|}$"> and then sorted by their projection <img src="https://render.githubusercontent.com/render/math?math=$sort(|r_i|)$"> to obtain their reassigned class. 
 
 
 ## Initial setup
